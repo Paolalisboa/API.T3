@@ -3,7 +3,6 @@ import sqlite3
 
 app = Flask(__name__)
 
-
 def init_db():
     with sqlite3.connect('database.db') as conn:
 
@@ -18,17 +17,9 @@ def init_db():
         
 init_db()
 
-
-@app.route('/')
-def home_page():
-    return "<h2>Minha página com Flask</h2>"
-
-
-init_db()
-
 @app.route('/')
 def homepage():
-    return "<h3>Minha página usando Flask</h3>"
+    return "<h3>Desafio com Python</h3>"
 
 @app.route('/doar', methods=['POST'])
 def doar():
@@ -49,6 +40,7 @@ def doar():
                      """,(titulo, categoria, autor, imagem_url))
         conn.commit()
         return jsonify({"mensagem": "Livro cadastrado com sucesso"}), 201
+
     
 @app.route('/livros', methods=['GET'])
 def listar_livros():
